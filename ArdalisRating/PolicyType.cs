@@ -1,12 +1,8 @@
-﻿using System;
+﻿namespace ArdalisRating;
 
-namespace ArdalisRating
+public enum PolicyType
 {
-
-    public enum PolicyType
-    {
-        Life = 0,
-        Land = 1,
-        Auto = 2
-    }
+    Life = 0,
+    Land = 1,
+    Auto = 2
 }

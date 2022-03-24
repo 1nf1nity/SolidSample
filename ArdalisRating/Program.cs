@@ -1,25 +1,22 @@
-﻿using System;
+﻿namespace ArdalisRating;
 
-namespace ArdalisRating
+internal class Program
 {
-    class Program
+    private static void Main()
     {
-        static void Main(string[] args)
+        Console.WriteLine("Ardalis Insurance Rating System Starting...");
+
+        var engine = new RatingEngine();
+        engine.Rate();
+
+        if (engine.Rating > 0)
         {
-            Console.WriteLine("Ardalis Insurance Rating System Starting...");
-
-            var engine = new RatingEngine();
-            engine.Rate();
-
-            if (engine.Rating > 0)
-            {
-                Console.WriteLine($"Rating: {engine.Rating}");
-            }
-            else
-            {
-                Console.WriteLine("No rating produced.");
-            }
-
+            Console.WriteLine($"Rating: {engine.Rating}");
         }
+        else
+        {
+            Console.WriteLine("No rating produced.");
+        }
+
     }
 }
