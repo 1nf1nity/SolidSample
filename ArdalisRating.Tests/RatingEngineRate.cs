@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System.IO;
+using FluentAssertions;
 using Xunit;
 
 namespace ArdalisRating.Tests;
@@ -22,7 +23,7 @@ public class RatingEngineRate
         engine.Rate();
         var result = engine.Rating;
 
-        Assert.Equal(10000, result);
+        result.Should().Be(10000);
     }
 
     [Fact]
@@ -30,7 +31,6 @@ public class RatingEngineRate
     {
         var policy = new Policy
         {
-            Type = PolicyType.Land,
             BondAmount = 200000,
             Valuation = 260000
         };
@@ -41,6 +41,6 @@ public class RatingEngineRate
         engine.Rate();
         var result = engine.Rating;
 
-        Assert.Equal(0, result);
+        result.Should().Be(0);
     }
 }
