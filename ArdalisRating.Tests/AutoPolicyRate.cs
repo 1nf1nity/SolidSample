@@ -12,7 +12,7 @@ public class AutoPolicyRate
 
     public AutoPolicyRate()
     {
-        _sut = new AutoPolicyRater(_ratingUpdaterMock.Object);
+        _sut = new (_ratingUpdaterMock.Object);
         _sut.Logger = _loggerMock.Object;
     }
 

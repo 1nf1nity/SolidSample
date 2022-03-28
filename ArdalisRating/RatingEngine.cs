@@ -8,16 +8,18 @@ public class RatingEngine
 {
     private readonly ILogger _logger;
     private readonly IPolicySource _policySource;
+    private readonly IPolicySerializer _policySerializer;
 
     protected IRatingContext Context { get; set; }
 
     public decimal Rating { get; set; }
 
-    public RatingEngine(ILogger logger, IPolicySource policySource)
+    public RatingEngine(ILogger logger, IPolicySource policySource, IPolicySerializer policySerializer)
     {
         _logger = logger;
         _policySource = policySource;
-        Context = new DefaultRatingContext(_policySource);
+        _policySerializer = policySerializer;
+        Context = new DefaultRatingContext(_policySource, _policySerializer);
         Context.Engine = this;
     }
 
@@ -26,8 +28,8 @@ public class RatingEngine
         _logger.Log("Starting rate.");
         _logger.Log("Loading policy.");
 
-        var policyJson = _policySource.GetPolicyFromSource("policy.json");
-        var policy = Context.GetPolicyFromJsonString(policyJson);
+        var policyString = _policySource.GetPolicyFromSource("policy.json");
+        var policy = _policySerializer.GetPolicyFromString(policyString);
 
         var rater = Context.CreateRaterForPolicy(policy, Context);
         rater.Rate(policy);

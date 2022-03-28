@@ -11,7 +11,7 @@ public class JsonPolicySerializerGetPolicyFromJsonString
         var inputJson = "{}";
         var serializer = new JsonPolicySerializer();
 
-        var result = serializer.GetPolicyFromJsonString(inputJson);
+        var result = serializer.GetPolicyFromString(inputJson);
 
         var policy = new Policy();
         result.Should().BeEquivalentTo(policy);
@@ -27,7 +27,7 @@ public class JsonPolicySerializerGetPolicyFromJsonString
 ";
         var serializer = new JsonPolicySerializer();
 
-        var result = serializer.GetPolicyFromJsonString(inputJson);
+        var result = serializer.GetPolicyFromString(inputJson);
 
         var policy = new Policy
         {
