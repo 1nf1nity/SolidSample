@@ -1,4 +1,4 @@
-﻿namespace ArdalisRating;
+﻿namespace ArdalisRating.Loggers;
 
 public class FileLogger : ILogger
 {

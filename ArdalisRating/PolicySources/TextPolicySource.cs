@@ -1,4 +1,4 @@
-﻿namespace ArdalisRating;
+﻿namespace ArdalisRating.PolicySources;
 
 public class TextPolicySource : IPolicySource
 {

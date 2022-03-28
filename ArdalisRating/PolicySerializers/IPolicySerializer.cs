@@ -1,4 +1,6 @@
-﻿namespace ArdalisRating;
+﻿using ArdalisRating.Models;
+
+namespace ArdalisRating.PolicySerializers;
 
 public interface IPolicySerializer
 {

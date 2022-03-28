@@ -1,4 +1,9 @@
-﻿namespace ArdalisRating;
+﻿using ArdalisRating.Loggers;
+using ArdalisRating.PolicySerializers;
+using ArdalisRating.PolicySources;
+using ArdalisRating.Raters;
+
+namespace ArdalisRating;
 
 internal class Program
 {

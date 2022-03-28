@@ -1,4 +1,7 @@
-﻿using FluentAssertions;
+﻿using ArdalisRating.Loggers;
+using ArdalisRating.Models;
+using ArdalisRating.Raters;
+using FluentAssertions;
 using Moq;
 using Xunit;
 

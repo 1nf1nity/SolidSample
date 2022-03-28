@@ -1,4 +1,9 @@
-﻿namespace ArdalisRating;
+﻿using ArdalisRating.Loggers;
+using ArdalisRating.PolicySerializers;
+using ArdalisRating.PolicySources;
+using ArdalisRating.Raters;
+
+namespace ArdalisRating;
 
 /// <summary>
 /// The RatingEngine reads the policy application details from a file and produces a numeric 

@@ -1,4 +1,7 @@
-﻿namespace ArdalisRating;
+﻿using ArdalisRating.Loggers;
+using ArdalisRating.Models;
+
+namespace ArdalisRating.Raters;
 
 public class LandPolicyRater : Rater
 {
