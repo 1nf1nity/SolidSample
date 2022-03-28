@@ -6,7 +6,9 @@ internal class Program
     {
         Console.WriteLine("Ardalis Insurance Rating System Starting...");
 
-        var engine = new RatingEngine(new ConsoleLogger(), new TextPolicySource(), new JsonPolicySerializer());
+        var logger = new ConsoleLogger();
+        var engine = new RatingEngine(logger, new TextPolicySource(), new JsonPolicySerializer(), new RaterFactory(logger));
+        
         engine.Rate();
 
         if (engine.Rating > 0)

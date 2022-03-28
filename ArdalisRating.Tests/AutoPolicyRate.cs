@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace ArdalisRating.Tests;
@@ -8,18 +9,16 @@ public class AutoPolicyRate
     private readonly AutoPolicyRater _sut;
 
     private readonly Mock<ILogger> _loggerMock = new();
-    private readonly Mock<IRatingUpdater> _ratingUpdaterMock = new();
 
     public AutoPolicyRate()
     {
-        _sut = new (_ratingUpdaterMock.Object);
-        _sut.Logger = _loggerMock.Object;
+        _sut = new(_loggerMock.Object);
     }
 
     [Fact]
     public void LogsMakeRequiredMessageGivenPolicyWithoutMake()
     {
-        var policy = new Policy() { Type = PolicyType.Auto };
+        var policy = new Policy { Type = PolicyType.Auto };
 
         _sut.Rate(policy);
 
@@ -36,9 +35,9 @@ public class AutoPolicyRate
             Deductible = 250m
         };
 
-        _sut.Rate(policy);
+        var result = _sut.Rate(policy);
 
-        _ratingUpdaterMock.Verify(m => m.UpdateRating(1000m));
+        result.Should().Be(1000m);
     }
 
     [Fact]
@@ -51,8 +50,8 @@ public class AutoPolicyRate
             Deductible = 500m
         };
 
-        _sut.Rate(policy);
+        var result = _sut.Rate(policy);
 
-        _ratingUpdaterMock.Verify(m => m.UpdateRating(900m));
+        result.Should().Be(900m);
     }
 }
