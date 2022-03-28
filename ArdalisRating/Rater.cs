@@ -1,14 +1,14 @@
 ﻿namespace ArdalisRating;
 
-internal abstract class Rater
+public abstract class Rater
 {
-    protected readonly RatingEngine Engine;
+    protected readonly IRatingContext Context;
     protected readonly ConsoleLogger Logger;
 
-    protected Rater(RatingEngine engine, ConsoleLogger logger)
+    protected Rater(IRatingContext context)
     {
-        Engine = engine;
-        Logger = logger;
+        Context = context;
+        Logger = context.Logger;
     }
 
     public abstract void Rate(Policy policy);

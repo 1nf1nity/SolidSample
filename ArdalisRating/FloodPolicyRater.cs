@@ -2,29 +2,29 @@
 
 internal class FloodPolicyRater : Rater
 {
-    public FloodPolicyRater(RatingEngine engine, ConsoleLogger logger) : base(engine, logger)
+    public FloodPolicyRater(IRatingContext context) : base(context)
     {
     }
 
     public override void Rate(Policy policy)
     {
-        Logger.Log("Rating FLOOD policy...");
-        Logger.Log("Validating policy.");
+        Context.Log("Rating FLOOD policy...");
+        Context.Log("Validating policy.");
         if (policy.BondAmount == 0 || policy.Valuation == 0)
         {
-            Logger.Log("Flood policy must specify Bond Amount and Valuation.");
+            Context.Log("Flood policy must specify Bond Amount and Valuation.");
             return;
         }
 
         if (policy.ElevationAboveSeaLevelFeet <= 0)
         {
-            Logger.Log("Flood policy is not available for elevations at or below sea level.");
+            Context.Log("Flood policy is not available for elevations at or below sea level.");
             return;
         }
 
         if (policy.BondAmount < 0.8m * policy.Valuation)
         {
-            Logger.Log("Insufficient bond amount.");
+            Context.Log("Insufficient bond amount.");
             return;
         }
 
@@ -42,6 +42,6 @@ internal class FloodPolicyRater : Rater
             multiple = 1.1m;
         }
 
-        Engine.Rating = policy.BondAmount * 0.05m * multiple;
+        Context.UpdateRating(policy.BondAmount * 0.05m * multiple);
     }
 }

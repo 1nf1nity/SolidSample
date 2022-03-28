@@ -2,18 +2,18 @@
 
 internal class AutoPolicyRater : Rater
 {
-    public AutoPolicyRater(RatingEngine engine, ConsoleLogger logger) : base(engine, logger)
+    public AutoPolicyRater(IRatingContext context) : base(context)
     {
     }
 
     public override void Rate(Policy policy)
     {
-        Logger.Log("Rating AUTO policy...");
-        Logger.Log("Validating policy.");
+        Context.Log("Rating AUTO policy...");
+        Context.Log("Validating policy.");
 
         if (string.IsNullOrEmpty(policy.Make))
         {
-            Logger.Log("Auto policy must specify Make");
+            Context.Log("Auto policy must specify Make");
             return;
         }
 
@@ -21,10 +21,10 @@ internal class AutoPolicyRater : Rater
         {
             if (policy.Deductible < 500)
             {
-                Engine.Rating = 1000m;
+                Context.UpdateRating(1000m);
                 return;
             }
-            Engine.Rating = 900m;
+            Context.UpdateRating(900m);
         }
     }
 }

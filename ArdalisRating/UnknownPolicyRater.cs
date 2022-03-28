@@ -2,12 +2,12 @@
 
 internal class UnknownPolicyRater : Rater
 {
-    public UnknownPolicyRater(RatingEngine engine, ConsoleLogger logger) : base(engine, logger)
+    public UnknownPolicyRater(IRatingContext context) : base(context)
     {
     }
 
     public override void Rate(Policy policy)
     {
-        Logger.Log("Unknown policy type");
+        Context.Log("Unknown policy type");
     }
 }
