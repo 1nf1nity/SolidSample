@@ -2,7 +2,7 @@
 
 internal class LandPolicyRater : Rater
 {
-    public LandPolicyRater(IRatingContext context) : base(context)
+    public LandPolicyRater(IRatingUpdater ratingUpdater) : base(ratingUpdater)
     {
     }
 
@@ -23,6 +23,6 @@ internal class LandPolicyRater : Rater
             return;
         }
 
-        Context.UpdateRating(policy.BondAmount * 0.05m);
+        RatingUpdater.UpdateRating(policy.BondAmount * 0.05m);
     }
 }
