@@ -8,5 +8,4 @@ public interface IRatingContext : ILogger, IRatingUpdater
     Policy GetPolicyFromXmlString(string policyXml);
     Rater CreateRaterForPolicy(Policy policy, IRatingContext context);
     RatingEngine Engine { get; set; }
-    ConsoleLogger Logger { get; }
 }

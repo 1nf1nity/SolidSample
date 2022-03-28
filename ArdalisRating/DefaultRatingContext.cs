@@ -4,8 +4,6 @@ public class DefaultRatingContext : IRatingContext
 {
     public RatingEngine Engine { get; set; }
 
-    public ConsoleLogger Logger => new();
-
     public Rater CreateRaterForPolicy(Policy policy, IRatingContext context)
     {
         return new RaterFactory().Create(policy, context);
