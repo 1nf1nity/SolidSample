@@ -2,7 +2,7 @@
 
 internal class RaterFactory
 {
-    public Rater? Create(Policy policy, RatingEngine engine)
+    public Rater Create(Policy policy, RatingEngine engine)
     {
         try
         {
@@ -11,7 +11,7 @@ internal class RaterFactory
         }
         catch
         {
-            return null;
+            return new UnknownPolicyRater(engine, engine.Logger);
         }
     }
 }
