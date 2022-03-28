@@ -12,6 +12,9 @@ internal class RaterFactory
             case PolicyType.Land:
                 return new LandPolicyRater(engine, engine.Logger);
 
+            case PolicyType.Flood:
+                return new FloodPolicyRater(engine, engine.Logger);
+
             case PolicyType.Life:
                 return new LifePolicyRater(engine, engine.Logger);
 
