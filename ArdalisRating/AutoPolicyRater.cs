@@ -1,6 +1,6 @@
 ﻿namespace ArdalisRating;
 
-internal class AutoPolicyRater : Rater
+public class AutoPolicyRater : Rater
 {
     public AutoPolicyRater(IRatingUpdater ratingUpdater) : base(ratingUpdater)
     {
