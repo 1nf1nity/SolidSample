@@ -8,23 +8,23 @@ internal class FloodPolicyRater : Rater
 
     public override void Rate(Policy policy)
     {
-        Context.Log("Rating FLOOD policy...");
-        Context.Log("Validating policy.");
+        Logger.Log("Rating FLOOD policy...");
+        Logger.Log("Validating policy.");
         if (policy.BondAmount == 0 || policy.Valuation == 0)
         {
-            Context.Log("Flood policy must specify Bond Amount and Valuation.");
+            Logger.Log("Flood policy must specify Bond Amount and Valuation.");
             return;
         }
 
         if (policy.ElevationAboveSeaLevelFeet <= 0)
         {
-            Context.Log("Flood policy is not available for elevations at or below sea level.");
+            Logger.Log("Flood policy is not available for elevations at or below sea level.");
             return;
         }
 
         if (policy.BondAmount < 0.8m * policy.Valuation)
         {
-            Context.Log("Insufficient bond amount.");
+            Logger.Log("Insufficient bond amount.");
             return;
         }
 

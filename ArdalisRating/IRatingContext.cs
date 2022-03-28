@@ -1,8 +1,7 @@
 ﻿namespace ArdalisRating;
 
-public interface IRatingContext
+public interface IRatingContext : ILogger
 {
-    void Log(string message);
     string LoadPolicyFromFile(string filepath);
     string LoadPolicyFromUri(string uri);
     Policy GetPolicyFromJsonString(string policyJson);

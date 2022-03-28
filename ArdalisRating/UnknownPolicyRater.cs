@@ -8,6 +8,6 @@ internal class UnknownPolicyRater : Rater
 
     public override void Rate(Policy policy)
     {
-        Context.Log("Unknown policy type");
+        Logger.Log("Unknown policy type");
     }
 }

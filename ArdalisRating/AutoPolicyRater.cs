@@ -8,12 +8,12 @@ internal class AutoPolicyRater : Rater
 
     public override void Rate(Policy policy)
     {
-        Context.Log("Rating AUTO policy...");
-        Context.Log("Validating policy.");
+        Logger.Log("Rating AUTO policy...");
+        Logger.Log("Validating policy.");
 
         if (string.IsNullOrEmpty(policy.Make))
         {
-            Context.Log("Auto policy must specify Make");
+            Logger.Log("Auto policy must specify Make");
             return;
         }
 
