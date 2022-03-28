@@ -1,6 +1,6 @@
 ﻿namespace ArdalisRating;
 
-public class TextPolicySource
+public class TextPolicySource : IPolicySource
 {
     public string GetPolicyFromSource(string filepath)
     {

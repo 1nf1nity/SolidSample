@@ -2,7 +2,14 @@
 
 public class DefaultRatingContext : IRatingContext
 {
+    private readonly IPolicySource _policySource;
+
     public RatingEngine Engine { get; set; }
+
+    public DefaultRatingContext(IPolicySource policySource)
+    {
+        _policySource = policySource;
+    }
 
     public Rater CreateRaterForPolicy(Policy policy, IRatingContext context)
     {
@@ -21,7 +28,7 @@ public class DefaultRatingContext : IRatingContext
 
     public string LoadPolicyFromFile(string filepath)
     {
-        return new TextPolicySource().GetPolicyFromSource(filepath);
+        return _policySource.GetPolicyFromSource(filepath);
     }
 
     public string LoadPolicyFromUri(string uri)

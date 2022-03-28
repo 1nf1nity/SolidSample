@@ -10,10 +10,11 @@ public class RatingEngineRate
 {
     private readonly RatingEngine _sut;
     private readonly Mock<ILogger> _loggerMock = new();
+    private readonly Mock<IPolicySource> _policySourceMock = new();
 
     public RatingEngineRate()
     {
-        _sut = new RatingEngine(_loggerMock.Object);
+        _sut = new RatingEngine(_loggerMock.Object, _policySourceMock.Object);
     }
 
     [Fact]
@@ -26,7 +27,7 @@ public class RatingEngineRate
             Valuation = 200000
         };
         string json = JsonConvert.SerializeObject(policy);
-        File.WriteAllText("policy.json", json);
+        _policySourceMock.Setup(m => m.GetPolicyFromSource(It.IsAny<string>())).Returns(json);
 
         _sut.Rate();
         var result = _sut.Rating;
@@ -43,7 +44,7 @@ public class RatingEngineRate
             Valuation = 260000
         };
         string json = JsonConvert.SerializeObject(policy);
-        File.WriteAllText("policy.json", json);
+        _policySourceMock.Setup(m => m.GetPolicyFromSource(It.IsAny<string>())).Returns(json);
 
         _sut.Rate();
         var result = _sut.Rating;
@@ -61,7 +62,7 @@ public class RatingEngineRate
             Valuation = 260000
         };
         string json = JsonConvert.SerializeObject(policy);
-        File.WriteAllText("policy.json", json);
+        _policySourceMock.Setup(m => m.GetPolicyFromSource(It.IsAny<string>())).Returns(json);
 
         _sut.Rate();
 
